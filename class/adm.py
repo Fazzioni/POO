@@ -1,8 +1,17 @@
-class Adm():
-    def __init__(self, name_adm, pass_hash, email):
-        self.nameADM = name_adm
-        self.pass_hash = pass_hash
+from user import user
+
+class Adm(user):
+
+    def __init__(self, name,login, email, pass_hash = None, salt =None):
+        # inicializa a classe user
+        super().__init__(self, login, email, pass_hash, salt)
+        self.name = name
         self.email = email
 
-    def check_pass(self,hash):
-        pass
+        
+        self.privilege = []
+        # estrutura do privilégio não implementado
+        raise NotImplementedError
+
+
+ 
