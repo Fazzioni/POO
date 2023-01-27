@@ -2,12 +2,16 @@ from flask import Flask
 from flask_login import LoginManager
 ##app = Flask(__name__, template_folder='view') 
 #por default use o nome da pasta templates 
-from Dados import Database 
+from app.Dados import Database 
 
+global db
 db = Database()
 
 def create_app():
     app = Flask(__name__, template_folder='view') 
+    from app import Dados
+    from app import users
+
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
     #app.config['SECRET_KEY'] = 'secret-key-goes-here'
@@ -15,6 +19,7 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    
 
     #from .models import User
 
@@ -30,6 +35,8 @@ def create_app():
     # blueprint for non-auth parts of app
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    
 
     return app
 
