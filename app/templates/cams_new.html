@@ -1,0 +1,54 @@
+<!-- templates/cams_new.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  cams_new, Welcome, {{ name }}!
+</h1>
+
+    <form method="POST" action="/cams">
+
+      <div class="field">
+        <div>
+          <input type="radio" id="back_img_sim" name="backup_image" value="sim"
+                checked>
+          <label for="back_img_sim">Sim</label>
+        </div>
+        <div>
+          <input type="radio" id="back_img_nao" name="backup_image" value="Não"
+                checked>
+          <label for="back_img_nao">Não</label>
+        </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+          <input class="input is-large" type="number" name="backup_img_days" placeholder="backup image days" autofocus="">
+      </div>
+    </div>
+
+
+      <div class="field">
+          <div class="control">
+              <input class="input is-large" type="text" name="label" placeholder="label" autofocus="">
+          </div>
+      </div>
+
+      <div class="field">
+        <div>
+          <input type="radio" id="type_event_pessoa" name="type_event" value="pessoa"
+                checked>
+          <label for="type_event_pessoa">Pessoa</label>
+        </div>
+        <div>
+          <input type="radio" id="type_event_carro" name="type_event" value="Carro"
+                checked>
+          <label for="type_event_carro">Carro</label>
+        </div>
+    </div>
+    
+      <button class="button is-block is-info is-large is-fullwidth">Criar Nova Câmera</button>
+    </form>
+
+{% endblock %}

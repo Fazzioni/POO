@@ -26,7 +26,7 @@ class Cams(db.Model):
     type_event = db.Column(db.String(2))
     label = db.Column(db.String(100))
 
-class recepientes(db.Model):
+class Recepientes(db.Model):
     code = db.Column(db.Integer, primary_key=True)
     code_cam = db.Column(db.Integer)
     method = db.Column(db.String(100))

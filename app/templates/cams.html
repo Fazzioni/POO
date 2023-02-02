@@ -5,5 +5,46 @@
 {% block content %}
 <h1 class="title">
   cams, Welcome, {{ name }}!
+
+  <a href="{{ url_for('main.cams_new') }}" class="navbar-item">
+    Cadastrar uma nova câmera
+  </a>
+
+ 
+  <!-- percorre a variavel cams e cria uma tabela  -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>Backup Image</th>
+        <th>Backup Image Days</th>
+        <th>Type Event</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cam in cams %}
+      
+      <tr>
+        <td>{{ cam.label }}</td>
+        <td>{{ cam.backup_image }}</td>
+        <td>{{ cam.backup_img_days }}</td>
+        <td>{{ cam.type_event }}</td>
+        <td>
+
+          <a href="{{ url_for('main.cams_edit', id=cam.code) }}" class="navbar-item">
+            Editar
+
+          </a>
+          <form method="POST" action="/cams_delete?">
+            <input type="hidden" name="code" value="{{cam.code}}">
+            <button class="button is-block is-info is-large is-fullwidth">Deletar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+ 
+
 </h1>
 {% endblock %}
