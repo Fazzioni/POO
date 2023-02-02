@@ -77,13 +77,14 @@ def cams_post():
     db.session.add(new_cam)
     db.session.commit()
     
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.cams'))
 
 @main.route('/cams_edit')
 @login_required
 def cams_edit():
-    return 'main.cams_edit'
-
+    cam_id = request.args.get('id')
+    cam = Cams.query.filter_by(code=cam_id, client_code=current_user.id).first()
+    return render_template('cams_new.html', name=current_user.name, cam=cam)
 
 @main.route('/cams_delete', methods=['POST'])
 @login_required
@@ -93,3 +94,25 @@ def cams_delete():
     return redirect(url_for('main.cams'))
 
 
+@main.route('/cams_edit', methods=['POST'])
+def cams_edit_post():
+    """"
+        Método de Edição de cameras
+    """
+    user_id = current_user.id
+    cam_code = request.form.get('cam_code')
+
+    # verificar se essa camera é desse cliente
+    camera  = Cams.query.filter_by(code=cam_code, client_code=user_id).first()
+    print(camera)
+
+    if camera is None:
+        return redirect(url_for('main.cams'))
+
+    camera.backup_image = request.form.get('backup_image')
+    camera.backup_img_days = request.form.get('backup_img_days')
+    camera.type_event = request.form.get('type_event')
+    camera.label = request.form.get('label')
+    db.session.commit()
+    
+    return redirect(url_for('main.cams'))
