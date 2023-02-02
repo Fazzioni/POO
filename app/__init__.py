@@ -41,6 +41,9 @@ def create_app():
     from .cams import cams_bp as cams_blueprint
     app.register_blueprint(cams_blueprint)
 
+    from .recepients import recepients_bp as recepients_blueprint
+    app.register_blueprint(recepients_blueprint)
+    
     return app
 
 app = create_app()

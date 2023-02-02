@@ -20,6 +20,7 @@
         <th>Backup Image Days</th>
         <th>Type Event</th>
         <th>Actions</th>
+        <th>Recipients</th>
       </tr>
     </thead>
     <tbody>
@@ -30,17 +31,17 @@
         <td>{{ cam.backup_image }}</td>
         <td>{{ cam.backup_img_days }}</td>
         <td>{{ cam.type_event }}</td>
+
         <td>
 
-          <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="navbar-item">
-            Editar
+          <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="navbar-item">Editar</a>
 
-          </a>
           <form method="POST" action="/cams_delete?">
             <input type="hidden" name="code" value="{{cam.code}}">
             <button class="button is-block is-info is-large is-fullwidth">Deletar</button>
           </form>
         </td>
+        <td> <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="navbar-item">Editar</a> </td>
       </tr>
       {% endfor %}
     </tbody>

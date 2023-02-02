@@ -1,6 +1,6 @@
 # ESSE ARQUIVO CUIDA DOS REQUESTS DAS CAMERAS
 
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from .models import Cams, Recepientes, Events
 from . import db
