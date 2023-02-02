@@ -9,7 +9,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
 
-
 class Events(db.Model):
     code = db.Column(db.Integer, primary_key=True)
     code_cam = db.Column(db.Integer)
