@@ -38,6 +38,9 @@ def create_app():
     from .events import events as events_blueprint
     app.register_blueprint(events_blueprint)
 
+    from .cams import cams_bp as cams_blueprint
+    app.register_blueprint(cams_blueprint)
+
     return app
 
 app = create_app()
