@@ -3,10 +3,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Flask Login Example
-</h1>
-<h2 class="subtitle">
-  Easy authentication and authorization in Flask.
-</h2>
+
+  <head>
+    <title>Empresa de Visão Computacional</title>
+  </head>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="banner">
+        <h1>Empresa de Visão Computacional</h1>
+        <p>Tranquilidade e segurança, a um clique de distância.</p>
+      </section>
+      <section id="servicos">
+        <h2>Serviços</h2>
+        <p>Nós oferecemos soluções avançadas de visão computacional para monitoramento de segurança, através da análise de imagens de câmeras de segurança. Nossa tecnologia envia notificações diretamente para o seu WhatsApp ou e-mail, ao detectar presenças indesejadas em sua casa ou empresa.</p>
+      </section>
+      <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Somos uma empresa comprometida em oferecer soluções de tecnologia para a segurança e tranquilidade dos nossos clientes. Nós acreditamos que a segurança é um direito de todos e estamos sempre em busca de novas maneiras de tornar a vida mais fácil e segura para nossos clientes.</p>
+      </section>
+      <section id="contato">
+        <h2>Contato</h2>
+        <p>Entre em contato conosco para mais informações sobre nossos serviços e soluções de visão computacional.</p>
+        <form action="enviar_mensagem.php" method="post">
+          <input type="text" name="nome" placeholder="Nome">
+          <input type="email" name="email" placeholder="E-mail">
+          <textarea name="mensagem" placeholder="Mensagem"></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+    
+
+
+
+
 {% endblock %}

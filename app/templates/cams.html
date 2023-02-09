@@ -3,8 +3,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<head>
+  <style>
 
-<h1 class="titulo title"> Camerâs cadastradas </h1>
+  </style>
+</head>
+
+
+<h1 class="titulo title"> Câmeras cadastradas </h1>
 
   <div class="rigth">
     <a href="{{ url_for('cams.cams_new') }}" class=""><button class="button is-success is-light">Cadastrar uma nova câmera</button> </a>
@@ -37,7 +43,7 @@
 
 
         <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}">
-          <button  class="button is-info is-light" >recipients</button>
+          <button  class="button is-info is-light" >Alertas</button>
           </a> </td>
 
 
@@ -69,12 +75,16 @@
         <td colspan="8">
             {% for ev in events %}
               {% if ev.code_cam == cam.code %}
-              <p>
-               {% if ev.send == 1 %}  <span style="color: rgb(38, 168, 6);">[enviada]</span>  {% else %}  <span style="color: red;">[não enviada]</span>  {% endif%}
-
+              <div>
+               <a onclick="clica_mensagem(this)">
+               {% if ev.send == 1 %}  <span id='status' style="color: rgb(38, 168, 6);">[enviada]</span>  {% else %}  <span id='status' style="color: red;">[não enviada]</span>  {% endif%}
+                
                {{ev.formatadata()}}   {{ ev.recepients_method }} : {{ ev.recepients_adress }}  
 
-               </p>
+               <span id="msg" style="visibility: hidden;"> {{ev.message}} </span>
+              </a>
+
+              </div>
               {% endif %}
             {% endfor %}
         </td>
@@ -82,5 +92,56 @@
       </tr>
       {% endfor %}
     </tbody>
+  </table>
+
+<script>
+  function clica_mensagem(e){
+    
+ 
+    for (var i = 0; i < e.childNodes.length; i++) {
+      el = e.childNodes[i];
+      
+
+      if (el.nodeType == 1) { // get rid of the text node
+        console.log(el.id)
+          if (el.id == 'status'){         
+            document.getElementById('alerta_status').innerText = el.innerText;
+            document.getElementById('alerta_status').style.color = el.style.color;
+          }
+
+          if (el.id == 'msg')
+            document.getElementById('alerta_message').innerText = el.innerHTML;
+            
+          
+          
+        }
+    }
+
+
+    alert.style.display = "flex";
+  }
+</script>
+
+  <div class="alert" id="alert">
+    <div class="alert-box">
+      <h1 id="alerta_titulo">Visualizando mensagem</h1>
+      <p id="alerta_status">status</p>
+      <p id="alerta_message">mensagem</p>
+      <span class="close-btn" id="close-btn">&times;</span>
+    </div>
+  </div>
+
+   <script>
+    const showAlertBtn = document.getElementById("show-alert");
+    const closeBtn = document.getElementById("close-btn");
+    const alert = document.getElementById("alert");
+    closeBtn.addEventListener("click", function() {alert.style.display = "none";});
+  </script>
+
+
+
+
+  </body>
+
  
 {% endblock %}

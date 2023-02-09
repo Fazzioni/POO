@@ -30,7 +30,7 @@ def simulate():
 
     # cria a mensagem para enviar
 
-    obj_text =  'Pessoa detectada' if cam.type_event == 'Pessoa detecada'  else 'Carro detectado'
+    obj_text =  'Pessoa detectada' if cam.type_event == 'Pessoa'  else 'Carro detectado'
 
     # formata a data e hora
     
