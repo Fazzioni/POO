@@ -21,6 +21,7 @@
         <th>Type Event</th>
         <th>Actions</th>
         <th>Recipients</th>
+        <th>Simular evento</th>
       </tr>
     </thead>
     <tbody>
@@ -42,6 +43,8 @@
           </form>
         </td>
         <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}" class="navbar-item">Editar</a> </td>
+
+        <td> <a href="{{ url_for('events.simulate', id=cam.code) }}" class="navbar-item">Simular eventos</a> </td>
       </tr>
       {% endfor %}
     </tbody>

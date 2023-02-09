@@ -5,45 +5,34 @@
 {% block content %}
 <h1 class="title">
 
-  <a href="{{ url_for('cams.cams_new') }}" class="navbar-item">
+  <a href="{{ url_for('recipients.recepients_new', id=cam.code) }}" class="navbar-item">
     Cadastrar uma nova forma de alerta
   </a>
 
  
-  <!-- percorre a variavel cams e cria uma tabela  -->
-  <table class="table">
+  <!-- percorre a variavel rec e cria uma tabela -->
+
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
     <thead>
       <tr>
-        <th>Label</th>
-        <th>Backup Image</th>
-        <th>Backup Image Days</th>
-        <th>Type Event</th>
-        <th>Actions</th>
-        <th>Recipients</th>
+        <th>Modo</th>
+        <th>Endereço</th>
+        <th>Editar</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody>
-      {% for cam in cams %}
-      
+      {% for rec in recs %}
       <tr>
-        <td>{{ cam.label }}</td>
-        <td>{{ cam.backup_image }}</td>
-        <td>{{ cam.backup_img_days }}</td>
-        <td>{{ cam.type_event }}</td>
-
-        <td>
-
-          <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="navbar-item">Editar</a>
-
-          <form method="POST" action="/cams_delete?">
-            <input type="hidden" name="code" value="{{cam.code}}">
-            <button class="button is-block is-info is-large is-fullwidth">Deletar</button>
-          </form>
-        </td>
-        <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}" class="navbar-item">Editar</a> </td>
+        <td>{{ rec.method }}</td>
+        <td>{{ rec.adress }}</td>
+        <td><a href="{{ url_for('recipients.recepients_edit', id=rec.code) }}" class="button is-info">Editar</a></td>
+        <td><a href="{{ url_for('recipients.recepients_delete', rec_id=rec.code ) }}" class="button is-danger">Excluir</a></td>
       </tr>
       {% endfor %}
     </tbody>
+
+  
  
 
 </h1>

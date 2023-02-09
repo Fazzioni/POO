@@ -1,0 +1,36 @@
+<!-- templates/cams_new.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if rec %} <a>TESTE: {{rec.code}}</a>{% endif %}
+
+{% if cam %} <a> {{cam.code}}</a>{% endif %}
+
+    <form method="POST" action="/recipients">
+
+        <input type="hidden" name="cam_code" value="{{cam.code}}">
+        
+        {% if rec %}  <input type="hidden" name="rec_code" value="{{rec.code}}"> {% endif %}
+
+        <select name="modo" id="modo">
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="whatsapp">Whatsapp</option>
+        </select>
+
+        <input type="text" name="adress" id="adress"  {% if rec %}  value = "{{rec.adress}}" {% endif %}  >
+
+        
+    
+        <button class="button is-block is-info is-large is-fullwidth">  {% if rec %}  editar  {% else %} criar {% endif %}     </button>
+    </form>
+
+
+<script>
+    {% if rec %}  document.getElementById('modo').value = "{{rec.method}}"{% endif %} 
+</script>
+
+
+{% endblock %}
