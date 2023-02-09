@@ -15,13 +15,33 @@ footer{
 }
 
  
-table{
+.table{
     width: 99%;
     border-collapse: collapse;
+    background-color: rgba(77, 255, 0, 0.047);
 }
 
 .rigth{
     text-align-last: end;
     width: 99%;
     margin: 10px;
+}
+
+
+.select_field{
+    display: flex;
+}
+
+ 
+form {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.center_btn{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    width: 99%;
+    place-content: center;
 }

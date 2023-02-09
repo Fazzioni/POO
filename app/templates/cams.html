@@ -69,7 +69,12 @@
         <td colspan="8">
             {% for ev in events %}
               {% if ev.code_cam == cam.code %}
-                <p> {{ev.formatadata()}}   {{ ev.recepients_method }} : {{ ev.recepients_adress }}  </p><br>
+              <p>
+               {% if ev.send == 1 %}  <span style="color: rgb(38, 168, 6);">[enviada]</span>  {% else %}  <span style="color: red;">[não enviada]</span>  {% endif%}
+
+               {{ev.formatadata()}}   {{ ev.recepients_method }} : {{ ev.recepients_adress }}  
+
+               </p>
               {% endif %}
             {% endfor %}
         </td>

@@ -64,12 +64,13 @@ class Email:
                 self.server.sendmail(msg['From'], msg['To'], msg.as_string())
                 print(f"Email enviado com sucesso para: {msg['To']}")
                 repetir = 10
-                break
+                return True
             except Exception as e:
                 print("ERRO AO ENVIAR E-MAIL")
                 print(e)
                 self.__init__()
                 repetir += 1
+        return False
 
     def __del__(self):
         try:

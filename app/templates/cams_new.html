@@ -16,46 +16,59 @@
 
 
 
-    <form method="POST" action="/cams{%if cam%}_edit{% endif %}">
+    <form method="POST" action="/cams{%if cam%}_edit{% endif %}" style="width: 500px;">
 
       {% if cam %} <input type="hidden" name="cam_code" value="{{cam.code}}">{% endif %}
 
-      <div class="field">
+      <div class="field select_field">
+        Salvar a imagem?&ensp;&ensp; 
         <div>
           <input type="radio" id="back_img_sim" name="backup_image" value="1" {% if cam and cam.backup_image == 1 %} checked  {% endif %}>
-          <label for="back_img_sim">Sim</label>
+          <label for="back_img_sim">Sim&ensp;</label>
         </div>
         <div>
           <input type="radio" id="back_img_nao" name="backup_image" value="0"{% if cam and cam.backup_image != 1 %} checked  {% endif %}>
-          <label for="back_img_nao">Não</label>
+          <label for="back_img_nao">Não&ensp;</label>
         </div>
     </div>
 
+    
+    <div class="field select_field">
+     O que você gostaria de reconhecer? &ensp;&ensp; 
+
+    <div>
+      <input type="radio" id="type_event_pessoa" name="type_event" value="Pessoa"  {% if cam and cam.type_event == 'Pessoa' %} checked  {% endif %} >
+      <label for="type_event_pessoa">Pessoa &ensp;&ensp; </label>
+    </div>
+    <div>
+      <input type="radio" id="type_event_carro" name="type_event" value="Carro" {% if cam and cam.type_event == 'Carro' %} checked  {% endif %} >
+      <label for="type_event_carro">Carro</label>
+    </div>
+    </div>
+
+
     <div class="field">
       <div class="control">
+        <label for="backup_img_days">Quantos dias manter uma cópida da imagem?</label>
           <input class="input is-large" type="number" name="backup_img_days" placeholder="backup image days" autofocus="" {% if cam %} value="{{cam.backup_img_days}}" {% endif %} >
-      </div>
+          
+        </div>
     </div>
 
 
       <div class="field">
           <div class="control">
+            <label for="label">Nome da câmera</label>
               <input class="input is-large" type="text" name="label" placeholder="label" autofocus="" {% if cam %} value="{{cam.label}}" {% endif %}>
           </div>
       </div>
 
-      <div class="field">
-        <div>
-          <input type="radio" id="type_event_pessoa" name="type_event" value="Pessoa"  {% if cam and cam.type_event == 'Pessoa' %} checked  {% endif %} >
-          <label for="type_event_pessoa">Pessoa</label>
-        </div>
-        <div>
-          <input type="radio" id="type_event_carro" name="type_event" value="Carro" {% if cam and cam.type_event == 'Carro' %} checked  {% endif %} >
-          <label for="type_event_carro">Carro</label>
-        </div>
-    </div>
-    
-      <button class="button is-block is-info is-large is-fullwidth"> {% if cam %} Editar {%- else -%} Cadastrar Nova {% endif %} Câmera</button>
+      <div class="center_btn">
+        <a style="margin: 10px;" href="/cams" class="button is-block is-danger is-large "> Cancelar</a>
+
+         <button  style="margin: 10px;" class="button is-block is-info is-large "> {% if cam %} Editar {%- else -%} Cadastrar Nova {% endif %} Câmera</button>
+      </div>
+
     </form>
 
 {% endblock %}

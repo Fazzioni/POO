@@ -49,7 +49,7 @@ def simulate():
                            timestamp = get_current_timestamp(True),
                            recepients_method = rec.method,
                            recepients_adress = rec.adress,
-                           send = 1 if enviado else 0,
+                           send = 1 if enviado == True else 0,
                            message = message,
                        )
         # salva no banco de dados
