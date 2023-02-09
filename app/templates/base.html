@@ -13,10 +13,10 @@
 </head>
 
 <body>
-    <section class="is-primary is-fullheight">
+    <section class="hero is-primary is-fullheight">
 
         <div class="hero-head">
-            <nav class="navbar">
+            <nav class="navbar menu">
                 <div class="container">
 
                     <div id="navbarMenuHeroA" class="navbar-menu">
@@ -25,14 +25,8 @@
                             <a href="/cams" class="navbar-item">
                                 Cams
                             </a>
-
-                            <a href="{{ url_for('main.events') }}" class="navbar-item">
-                                Events
-                            </a>
-                            <a href="{{ url_for('recipients.recepients') }}" class="navbar-item">
-                                Recepients
-                            </a>
-
+ 
+ 
 
                             <a href="{{ url_for('main.index') }}" class="navbar-item">
                                 Home
@@ -49,6 +43,7 @@
                             <a href="{{ url_for('auth.signup') }}" class="navbar-item">
                                 Sign Up
                             </a>
+
                             {% endif %}
                             {% if current_user.is_authenticated %}
                             <a href="{{ url_for('auth.logout') }}" class="navbar-item">
@@ -69,5 +64,4 @@
         </div>
     </section>
 </body>
-
 </html>

@@ -2,41 +2,27 @@
 
 {% extends "base.html" %}
 
-<script>
-  function convertTimestamp(timestamp) {
-  var date = new Date(timestamp * 1000);
-  var year = date.getFullYear();
-  var month = (date.getMonth() + 1).toString().padStart(2, '0');
-  var day = date.getDate().toString().padStart(2, '0');
-  var hours = date.getHours().toString().padStart(2, '0');
-  var minutes = date.getMinutes().toString().padStart(2, '0');
-  var seconds = date.getSeconds().toString().padStart(2, '0');
-  
-  return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-}
-
-</script>
-
 {% block content %}
-<h1 class="title">
-  cams, Welcome, {{ name }}!
 
-  <a href="{{ url_for('cams.cams_new') }}" class="navbar-item">
-    Cadastrar uma nova câmera
-  </a>
+<h1 class="titulo title"> Camerâs cadastradas </h1>
 
+  <div class="rigth">
+    <a href="{{ url_for('cams.cams_new') }}" class=""><button class="button is-success is-light">Cadastrar uma nova câmera</button> </a>
+  </div>
  
   <!-- percorre a variavel cams e cria uma tabela  -->
   <table class="table">
     <thead>
-      <tr>
-        <th>Label</th>
-        <th>Backup Image</th>
-        <th>Backup Image Days</th>
-        <th>Type Event</th>
-        <th>Actions</th>
-        <th>Recipients</th>
-        <th>Simular evento</th>
+      <tr>        
+        <th>Câmera</th>
+        <th>armazenar a imagem?</th>
+        <th>Dias para armazenar a imagem</th>
+        <th>Tipo de Evento</th>
+        
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
       </tr>
     </thead>
     <tbody>
@@ -44,22 +30,40 @@
       
       <tr>
         <td>{{ cam.label }}</td>
-        <td>{{ cam.backup_image }}</td>
+        <td>{{ cam.back_img_str() }}</td>
         <td>{{ cam.backup_img_days }}</td>
         <td>{{ cam.type_event }}</td>
 
+
+
+        <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}">
+          <button  class="button is-info is-light" >recipients</button>
+          </a> </td>
+
+
+        <td> <a href="{{ url_for('events.simulate', id=cam.code) }}">
+          <button class="button is-success is-light">Simular eventos</button>  
+        </td>
+
+
+        
+
+        <td style=" display: flex;">
+          <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="">
+            <button class="button is-block is-info  is-warning">Editar</button>  
+          </a>
+        </td>
+
+
         <td>
-
-          <a href="{{ url_for('cams.cams_edit', id=cam.code) }}" class="navbar-item">Editar</a>
-
           <form method="POST" action="/cams_delete?">
             <input type="hidden" name="code" value="{{cam.code}}">
-            <button class="button is-block is-info is-large is-fullwidth">Deletar</button>
+            <button class="button is-block is-info  is-danger">Deletar</button>
           </form>
         </td>
-        <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}" class="navbar-item">Editar</a> </td>
 
-        <td> <a href="{{ url_for('events.simulate', id=cam.code) }}" class="navbar-item">Simular eventos</a> </td>
+
+
       </tr>
       <tr>
         <td colspan="7">
@@ -74,6 +78,4 @@
       {% endfor %}
     </tbody>
  
-
-</h1>
 {% endblock %}

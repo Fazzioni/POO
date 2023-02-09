@@ -1,4 +1,27 @@
 
 body{
-    background-color: red;
+    background-color: rgb(209, 164, 87);
+}
+
+.navbar{
+    background-color: rgb(233, 156, 55);
+}
+
+
+footer{
+    background-color: black;
+    color: white;
+    padding: 30px;
+}
+
+ 
+table{
+    width: 99%;
+    border-collapse: collapse;
+}
+
+.rigth{
+    text-align-last: end;
+    width: 99%;
+    margin: 10px;
 }

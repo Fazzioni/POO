@@ -40,6 +40,9 @@ class Cams(db.Model):
     type_event = db.Column(db.String(2))
     label = db.Column(db.String(100))
 
+    def back_img_str(self):
+        return 'Sim' if self.backup_image == 1 else 'Não'
+            
 
 
 class Recepients(db.Model):
