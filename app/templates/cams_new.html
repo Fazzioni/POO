@@ -10,9 +10,11 @@
 {% endif %}
 {% endwith %}
 
-<h1 class="title">
-  cams_new, Welcome, {{ name }}!
-</h1>
+<h1 class="title"> {% if cam %} Editando {% else %} Cadastrando {% endif %} câmera </h1>
+
+
+
+
 
     <form method="POST" action="/cams{%if cam%}_edit{% endif %}">
 

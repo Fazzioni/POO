@@ -47,6 +47,12 @@ def signup_post():
         flash('Preencha o e-mail')
         return redirect(url_for('auth.signup'))
 
+    if (password is None) or len(password) == 0:
+        flash('Senha inválida')
+        return redirect(url_for('auth.signup'))
+    
+
+
     if user: # if a user is found, we want to redirect back to signup page so user can try again  
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
