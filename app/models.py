@@ -2,6 +2,7 @@
 
 from flask_login import UserMixin
 from . import db
+from datetime import datetime
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
@@ -17,6 +18,15 @@ class Events(db.Model):
     recepients_adress = db.Column(db.String(100))
     send = db.Column(db.Integer)
     message = db.Column(db.String(1000))
+
+    def formatadata(self):
+        # transforma o timestamp em data
+        data = ''
+        try:
+            data = datetime.fromtimestamp(int(self.timestamp)).strftime('%d/%m/%Y %H:%M:%S')
+        except:
+            pass
+        return data
 
 class Cams(db.Model):
     code = db.Column(db.Integer, primary_key=True)

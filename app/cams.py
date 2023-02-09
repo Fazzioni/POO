@@ -10,10 +10,23 @@ cams_bp = Blueprint('cams', __name__)
 @login_required
 def cams():
     cams = Cams.query.filter_by(client_code=current_user.id).all()
-    for i in cams:
-        print(i.code, i.client_code, i.backup_image, i.backup_img_days, i.type_event, i.label)
 
-    return render_template('cams.html', name=current_user.name,cams=cams)
+    codes = []
+    events = []
+    if cams is not None:
+        # pega todos os codigos de cams
+        codes = [i.code for i in cams]
+        # pega todos os events com esses codigos de camera
+        if len(codes):
+            events = Events.query.filter(Events.code_cam.in_(codes)).all()
+
+        #for e in events:
+        #    print(e.code_cam, e.timestamp, e.recepients_method, e.recepients_adress, e.send, e.message)
+        #for i in cams:
+        #    print(i.code, i.client_code, i.backup_image, i.backup_img_days, i.type_event, i.label)
+    for ev in events:
+        print(ev.code_cam, ev.timestamp, ev.recepients_method, ev.recepients_adress, ev.send, ev.message)
+    return render_template('cams.html', name=current_user.name,cams=cams, events=events)
 
 @cams_bp.route('/cams_new')
 @login_required

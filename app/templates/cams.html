@@ -2,6 +2,21 @@
 
 {% extends "base.html" %}
 
+<script>
+  function convertTimestamp(timestamp) {
+  var date = new Date(timestamp * 1000);
+  var year = date.getFullYear();
+  var month = (date.getMonth() + 1).toString().padStart(2, '0');
+  var day = date.getDate().toString().padStart(2, '0');
+  var hours = date.getHours().toString().padStart(2, '0');
+  var minutes = date.getMinutes().toString().padStart(2, '0');
+  var seconds = date.getSeconds().toString().padStart(2, '0');
+  
+  return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+}
+
+</script>
+
 {% block content %}
 <h1 class="title">
   cams, Welcome, {{ name }}!
@@ -45,6 +60,16 @@
         <td> <a href="{{ url_for('recipients.recepients_cam', id=cam.code) }}" class="navbar-item">Editar</a> </td>
 
         <td> <a href="{{ url_for('events.simulate', id=cam.code) }}" class="navbar-item">Simular eventos</a> </td>
+      </tr>
+      <tr>
+        <td colspan="7">
+            {% for ev in events %}
+              {% if ev.code_cam == cam.code %}
+                <p> {{ev.formatadata()}}   {{ ev.recepients_method }} : {{ ev.recepients_adress }}  </p><br>
+              {% endif %}
+            {% endfor %}
+        </td>
+        
       </tr>
       {% endfor %}
     </tbody>
