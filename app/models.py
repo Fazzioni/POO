@@ -9,6 +9,10 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
+    cpfj = db.Column(db.String(20))
+    telefone = db.Column(db.String(15))
+
+
 
 class Events(db.Model):
     code = db.Column(db.Integer, primary_key=True)

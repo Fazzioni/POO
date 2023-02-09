@@ -10,9 +10,14 @@ db = SQLAlchemy()
 email = Email()
 
 def create_app():
-    app = Flask(__name__)
     basedir = os.path.abspath(os.path.dirname(__file__))
-    print( os.path.join(basedir, 'db.sqlite') )
+    print(
+        os.path.join(basedir, 'static')+os.sep
+    )
+    app = Flask(__name__, 
+                static_folder=os.path.join(basedir, 'static')+os.sep,
+                )
+  
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 
@@ -26,7 +31,6 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(user_id))
 
     # blueprint for auth routes in our app

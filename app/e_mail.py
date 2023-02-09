@@ -78,39 +78,6 @@ class Email:
             print(e)
 
 
-
-
-#def Exemplo_email_com_imagem():
-#    import matplotlib.pyplot as plt
-#    import io
-#
-#    plt.plot(range(100))
-#    s = io.BytesIO()
-#    plt.savefig(s, format='png', bbox_inches="tight")
-#    plt.close()
-#    image_data = s.getvalue() # pega os dados binarios da imagem
-#
-#    emails_dict = {
-#        'destinatario':'daniel.fazzioni@gmail.com',
-#        'titulo':'teste',
-#        'mensagem' : None,
-#        'html' : """\
-#                <html>
-#                    <head></head>
-#                    <body>
-#                        <p>Exemplo de e-mail com imagem!!</p>
-#                        <img src="cid:image1" alt="img" />
-#                    </body>
-#                </html>    
-#                """,
-#        'list_imgs_data' : [{'data':image_data,'cid':'image1'}]
-#        # cid = content id
-#    }
-#    e = Email()
-#    e.send(**emails_dict)
-#    emails_dict['destinatario'] = "ugarte_alex@discente.ufg.br"
-#    e.send(**emails_dict)
-
 if __name__ == '__main__':
     a = Email()
     a.send('daniel.fazzioni@gmail.com','tese','teste') 
