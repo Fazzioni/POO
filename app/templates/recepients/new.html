@@ -4,33 +4,43 @@
 
 {% block content %}
 
-{% if rec %} <a>TESTE: {{rec.code}}</a>{% endif %}
 
-{% if cam %} <a> {{cam.code}}</a>{% endif %}
+<h1 class="title"> {% if rec %} Editando {% else %} Cadastrando {% endif %} um alerta </h1>
 
-    <form method="POST" action="/recipients">
 
+    <form method="POST" action="/recipients" style="width: 500px;"> 
+ 
         <input type="hidden" name="cam_code" value="{{cam.code}}">
         
         {% if rec %}  <input type="hidden" name="rec_code" value="{{rec.code}}"> {% endif %}
-
-        <select name="modo" id="modo">
-            <option value="email">Email</option>
-            <option value="sms">SMS</option>
-            <option value="whatsapp">Whatsapp</option>
-        </select>
-
-        <input type="text" name="adress" id="adress"  {% if rec %}  value = "{{rec.adress}}" {% endif %}  >
-
+        <div>
+            <label for="modo">Modo de Envio</label><br>
+            <select name="modo" id="modo">
+                <option value="email">Email</option>
+                <option value="sms">SMS</option>
+                <option value="whatsapp">Whatsapp</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="adress"> endereço de envio </label><br>
+            <input type="text" name="adress" id="adress"  {% if rec %}  value = "{{rec.adress}}" {% endif %}  >
+        </div>
         
     
-        <button class="button is-block is-info is-large is-fullwidth">  {% if rec %}  editar  {% else %} criar {% endif %}     </button>
+        
+
+
+        <div class="center_btn">
+            <a style="margin: 10px;" href="{{ url_for('recipients.recepients_cam', id=cam.code) }}" class="button is-block is-danger "> Cancelar</a>
+    
+             <button  style="margin: 10px;" class="button is-block is-info ">  {% if rec %}  editar  {% else %} criar {% endif %}  </button>
+          </div>
+
+
     </form>
 
 
-<script>
-    {% if rec %}  document.getElementById('modo').value = "{{rec.method}}"{% endif %} 
-</script>
-
+    {% if rec %}<script>  document.getElementById('modo').value = "{{rec.method}}" </script> {% endif %} 
 
 {% endblock %}

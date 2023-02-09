@@ -27,6 +27,12 @@ footer{
     margin: 10px;
 }
 
+.left{
+    text-align: left;
+    width: 99%;
+    margin: 10px;
+}
+
 
 .select_field{
     display: flex;

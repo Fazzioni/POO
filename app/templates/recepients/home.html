@@ -3,22 +3,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
 
-  <a href="{{ url_for('recipients.recepients_new', id=cam.code) }}" class="navbar-item">
-    Cadastrar uma nova forma de alerta
-  </a>
+<h1 class="titulo title"> Alertas Cadastrasados </h1>
 
+  <div class="rigth">
+    <a href="{{ url_for('recipients.recepients_new', id=cam.code) }}" class=""><button class="button is-success is-light">Cadastrar uma nova forma de alerta</button> </a>
+  </div>
  
-  <!-- percorre a variavel rec e cria uma tabela -->
 
-  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+  <!-- percorre a variavel rec e cria uma tabela -->
+  <table class="table ">
     <thead>
       <tr>
         <th>Modo</th>
         <th>Endereço</th>
-        <th>Editar</th>
-        <th>Excluir</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +32,14 @@
       {% endfor %}
     </tbody>
 
-  
- 
 
-</h1>
+  </table>
+
+
+  <div class="left">
+    <a href="/cams" class=""><button class="button is-info is-light">Voltar</button> </a>
+  </div>
+
+
+    
 {% endblock %}
