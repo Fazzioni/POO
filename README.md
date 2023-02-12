@@ -1,5 +1,5 @@
 
-# Trabalho de conclusão de Programação Orientada a Objeto
+# Trabalho de conclusão de Programação Orientada a Objetos
 
 
 ## Diagrama de Classes
