@@ -11,17 +11,14 @@ email = Email()
 
 def create_app():
     basedir = os.path.abspath(os.path.dirname(__file__))
-    print(
-        os.path.join(basedir, 'static')+os.sep
-    )
-    app = Flask(__name__, 
-                static_folder=os.path.join(basedir, 'static')+os.sep,
-                )
+    #print(os.path.join(basedir, 'static')+os.sep )
+    app = Flask(__name__,  static_folder=os.path.join(basedir, 'static')+os.sep, )
   
-    app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
+    app.config['SECRET_KEY'] = 'ProgramacaoOrientadaObjetos'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 
     db.init_app(app)
+
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
